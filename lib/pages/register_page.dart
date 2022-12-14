@@ -3,7 +3,7 @@ import 'package:js_onboarding/providers/register_provider.dart';
 import 'package:provider/provider.dart';
 
 class RegisterPage extends StatefulWidget {
-  static final String routeName = '/';
+  static final String routeName = '/LoginPage';
   const RegisterPage();
 
   @override
@@ -79,7 +79,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             if (value!.length < 3) {
                               return "APELLIDO PATERNO NO VALIDO";
                             }
-                            //return null;
+                            return null;
                           },
 
                           // los constantes son porque no se modicada la decoracion
@@ -97,7 +97,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               return "APELLIDO MATERNO NO VALIDO";
                             }
 
-                            ///return null;
+                            return null;
                           },
                           // los constantes son porque no se modicada la decoracion
                           // en la ejecucion
@@ -113,7 +113,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             if (value!.length < 3) {
                               return "ESTADO NO VALIDO";
                             }
-                            //return null;
+                            return null;
                           },
                           // los constantes son porque no se modicada la decoracion
                           // en la ejecucion
@@ -129,7 +129,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             if (value!.length < 10) {
                               return "CORREO NO VALIDO";
                             }
-                            //return null;
+                            return null;
                           },
                           // los constantes son porque no se modicada la decoracion
                           // en la ejecucion
@@ -145,7 +145,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             if (value!.length < 8) {
                               return "CONTREASEÑA MUY CORTA";
                             }
-                            //return null;
+                            return null;
                           },
                           // los constantes son porque no se modicada la decoracion
                           // en la ejecucion

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:js_onboarding/pages/register_page.dart';
 
 class LoginPage extends StatelessWidget {
-  static final String routeName = '/';
+  static final String routeName = '/HomePage';
   const LoginPage();
 
   @override
@@ -29,12 +29,12 @@ class LoginPage extends StatelessWidget {
                   width: double.infinity,
                   child: Column(
                     children: [
-                      Text('INICIAR SECCION',
+                      Text('INICIAR SECCIóN',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.brown,
                             fontWeight: FontWeight.bold,
-                            fontSize: 22,
+                            fontSize: 20,
                           )),
                       const SizedBox(height: 20),
                       TextField(
@@ -45,7 +45,8 @@ class LoginPage extends StatelessWidget {
                             hintText: 'Correo Electronico'),
                       ),
                       TextField(
-                        //Se ocutan los caracteres
+                        //Se ocutan los caracteres con el atributo
+                        //obscureText
                         obscureText: true,
                         // los constantes son porque no se modicada la decoracion
                         // en la ejecucion
@@ -58,7 +59,7 @@ class LoginPage extends StatelessWidget {
                       ElevatedButton(
                           onPressed: () {},
                           child: Text(
-                            'Ingresar',
+                            'INGRESAR',
                           ))
                     ],
                   ),
@@ -67,6 +68,7 @@ class LoginPage extends StatelessWidget {
             ),
             TextButton(
                 onPressed: () {
+                  //Cuando se presiona  el  botton nos direcciona al registro.
                   Navigator.pushNamed(context, RegisterPage.routeName);
                 },
                 child: Text(

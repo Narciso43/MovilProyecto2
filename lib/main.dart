@@ -8,12 +8,29 @@ import 'package:js_onboarding/providers/register_provider.dart';
 import 'package:js_onboarding/utils/preferences.dart';
 import 'package:js_onboarding/utils/utils.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
+//import 'firebase_options.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  final preferences = Preferences();
-  await preferences.initialize();
-  runApp(MyApp());
+//void main() async {
+//WidgetsFlutterBinding.ensureInitialized();
+//final preferences = Preferences();
+//await preferences.initialize();
+//runApp(MyApp());
+
+//}
+
+//Esta clase se cre para los estados de la aplicacion
+void main() => (AppState(MyApp()));
+
+class AppState extends StatelessWidget {
+  @override
+  Widget build(Object context) {
+    return MultiProvider(child: MyApp(), providers: [
+      ChangeNotifierProvider(create: (_) => OboardingProvider()),
+      ChangeNotifierProvider(create: (_) => LoginProvider()),
+      ChangeNotifierProvider(create: (_) => RegisterProvider()),
+    ]);
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -33,7 +50,9 @@ class MyApp extends StatelessWidget {
         title: 'SISTEMAS DE ANALISIS',
         theme: CustomTheme.theme,
         //initialRoute: preferences.initialPage,
-        initialRoute: HomePage.routeName,
+        initialRoute: LoginPage.routeName,
+        //initialRoute: '/HomePage',
+
         routes: {
           LoginPage.routeName: (_) => LoginPage(),
           RegisterPage.routeName: (_) => RegisterPage(),

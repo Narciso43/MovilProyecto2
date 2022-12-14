@@ -32,7 +32,11 @@ dependencies:
   cupertino_icons: ^1.0.2
   animate_do: ^3.0.2
   shared_preferences: ^2.0.15
-  provider: ^6.0.4
+  provider: ^6.0.5
+  image_picker: ^0.8.6
+  firebase_core: ^2.4.0
+  matcher: ^0.12.13
+  test_api: ^0.4.16
 
 dev_dependencies:
   flutter_test:
