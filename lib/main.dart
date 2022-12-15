@@ -20,7 +20,7 @@ import 'package:firebase_core/firebase_core.dart';
 //}
 
 //Esta clase se cre para los estados de la aplicacion
-void main() => (AppState(MyApp()));
+void main() => (AppState());
 
 class AppState extends StatelessWidget {
   @override
@@ -29,6 +29,7 @@ class AppState extends StatelessWidget {
       ChangeNotifierProvider(create: (_) => OboardingProvider()),
       ChangeNotifierProvider(create: (_) => LoginProvider()),
       ChangeNotifierProvider(create: (_) => RegisterProvider()),
+      //ChangeNotifierProvider(create: (_) => HomePage()),
     ]);
   }
 }
@@ -50,7 +51,7 @@ class MyApp extends StatelessWidget {
         title: 'SISTEMAS DE ANALISIS',
         theme: CustomTheme.theme,
         //initialRoute: preferences.initialPage,
-        initialRoute: LoginPage.routeName,
+        initialRoute: OnboardingPage.routeName,
         //initialRoute: '/HomePage',
 
         routes: {

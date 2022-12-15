@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:js_onboarding/providers/register_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
 
 class RegisterPage extends StatefulWidget {
   static final String routeName = '/LoginPage';
@@ -12,7 +13,8 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   var formkey = GlobalKey<FormState>();
-  Map<String, String> FormData = {
+  //Mapeo de  datos para guardar los datos
+  Map<String, String> formData = {
     'nombre': '',
     'Apaterno': '',
     'Amaterno': '',
@@ -45,6 +47,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 child: Container(
                   width: double.infinity,
                   child: Form(
+                    //Esta llave para la validacion
                     key: formkey,
                     child: Column(
                       children: [
@@ -58,7 +61,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         const SizedBox(height: 20),
                         TextFormField(
                           onChanged: (value) {
-                            FormData['nombre'] = value;
+                            formData['nombre'] = value;
                           },
                           validator: (value) {
                             if (value!.length < 3) {
@@ -73,7 +76,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                         TextFormField(
                           onChanged: (value) {
-                            FormData['Apaterno'] = value;
+                            formData['Apaterno'] = value;
                           },
                           validator: (value) {
                             if (value!.length < 3) {
@@ -90,7 +93,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                         TextFormField(
                           onChanged: (value) {
-                            FormData['Amaterno'] = value;
+                            formData['Amaterno'] = value;
                           },
                           validator: (value) {
                             if (value!.length < 3) {
@@ -107,7 +110,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                         TextFormField(
                           onChanged: (value) {
-                            FormData['estado'] = value;
+                            formData['estado'] = value;
                           },
                           validator: (value) {
                             if (value!.length < 3) {
@@ -123,7 +126,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                         TextFormField(
                           onChanged: (value) {
-                            FormData['correo'] = value;
+                            formData['correo'] = value;
                           },
                           validator: (value) {
                             if (value!.length < 10) {
@@ -139,7 +142,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                         TextFormField(
                           onChanged: (value) {
-                            FormData['constraseña'] = value;
+                            formData['constraseña'] = value;
                           },
                           validator: (value) {
                             if (value!.length < 8) {
@@ -157,16 +160,22 @@ class _RegisterPageState extends State<RegisterPage> {
 
                         // Por medio de funciones  anonimas.
                         ElevatedButton(
+                            //funcion de la creacion de  datos
                             onPressed: () async {
+                              //Esto se hace para que la valion se  haga
+                              //garantizando que no va a  fallar
                               if (formkey.currentState!.validate()) {
                                 bool respuesta = await registerProvider
-                                    .registrarUsuario(FormData);
+                                    .registrarUsuario(formData);
                                 if (respuesta) {
+                                  //Manda un Mensaje   cuando el usuario esta
+                                  //Registrado
                                   showDialog(
                                       context: context,
                                       builder: (context) {
+                                        //AlettDialog manda la alerta
                                         return const AlertDialog(
-                                            title: Text('USUARIO RESGITRADO'));
+                                            title: Text('USUARIO REGISTRADO'));
                                       });
                                 }
                               } else {
