@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:js_onboarding/pages/app_config.dart';
 import 'package:js_onboarding/pages/home_page.dart';
 import 'package:js_onboarding/pages/login_page.dart';
 import 'package:js_onboarding/pages/onboarding_page.dart';
@@ -51,16 +52,10 @@ class MyApp extends StatelessWidget {
         title: 'SISTEMAS DE ANALISIS',
         theme: CustomTheme.theme,
         //initialRoute: preferences.initialPage,
-        initialRoute: OnboardingPage.routeName,
-        //initialRoute: '/HomePage',
+        //initialRoute: OnboardingPage.routeName,
+        initialRoute: AppConfig.initalRoute,
 
-        routes: {
-          LoginPage.routeName: (_) => LoginPage(),
-          RegisterPage.routeName: (_) => RegisterPage(),
-          OnboardingPage.routeName: (_) => OnboardingPage(),
-          HomePage.routeName: (_) => HomePage(),
-          OnboardingPage.routeName: (_) => OnboardingPage(),
-        },
+        routes: AppConfig.routes(),
       ),
     );
   }
