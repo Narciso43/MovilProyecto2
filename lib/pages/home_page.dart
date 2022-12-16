@@ -36,7 +36,7 @@ class HomePage extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12.0)),
               child: Text(
-                'Empezar',
+                'Empezar s',
                 style: TextStyle(color: Colors.blueGrey, fontSize: 30),
               ),
               onPressed: () {},
