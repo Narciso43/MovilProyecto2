@@ -3,6 +3,8 @@ import 'package:js_onboarding/providers/register_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 
+import '../widgets/app_title.dart';
+
 class RegisterPage extends StatefulWidget {
   static final String routeName = '/LoginPage';
   const RegisterPage();
@@ -51,13 +53,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     key: formkey,
                     child: Column(
                       children: [
-                        Text('REGISTRO DE USUARIO',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.brown,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 22,
-                            )),
+                        const AppTitle('REGISTRAR USUARIO'),
                         const SizedBox(height: 20),
                         TextFormField(
                           onChanged: (value) {

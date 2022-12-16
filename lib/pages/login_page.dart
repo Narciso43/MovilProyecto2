@@ -24,9 +24,11 @@ class _LoginPageState extends State<LoginPage> {
     'correo': '',
     'contraseña': ''
   };
+  //Se declara loginProvider como variable de clase
+  LoginProvider loginProvider = LoginProvider();
   @override
   Widget build(BuildContext context) {
-    final loginProvider = Provider.of<LoginProvider>(context);
+    loginProvider = Provider.of<LoginProvider>(context);
 
     return Scaffold(
       body: Container(
@@ -57,72 +59,31 @@ class _LoginPageState extends State<LoginPage> {
                         //durante la ejecucion.
                         const AppTitle('INICIAR  SECCION'),
                         const SizedBox(height: 20),
-                        TextFormField(
-                          onChanged: (value) {
-                            formData['correo'] = value;
-                          },
+                        AppFormField(
+                          'correo',
+                          'Correo electronico',
+                          formData: formData,
                           validator: (value) {
                             if (value!.length < 3) {
-                              return "NOMBRE NO VALIDO";
+                              return "Correo electronico no valido";
                             }
                           },
-
-                          // los constantes son porque no se modicada la decoracion
-                          // en la ejecucion
-                          decoration: const InputDecoration(
-                              icon: Icon(Icons.email),
-                              hintText: 'Correo Electronico'),
                         ),
-                        TextFormField(
-                          onChanged: (value) {
-                            formData['nombre'] = value;
-                          },
+                        AppFormField(
+                          'Contraseña',
+                          'Contraseña',
+                          obscureText: true,
+                          formData: formData,
                           validator: (value) {
                             if (value!.length < 3) {
-                              return "NOMBRE NO VALIDO";
+                              return "Contraseña no valida";
                             }
                           },
-                          //Se ocutan los caracteres con el atributo
-                          //obscureText
-                          obscureText: true,
-                          // los constantes son porque no se modicada la decoracion
-                          // en la ejecucion
-                          decoration: const InputDecoration(
-                              icon: Icon(Icons.password_rounded),
-                              hintText: 'Contraseña'),
                         ),
 
                         // Por medio de funciones  anonimas.
                         ElevatedButton(
-                            onPressed: () async {
-                              //Esto se hace para que la valion se  haga
-                              //garantizando que no va a  fallar
-                              if (formkey.currentState!.validate()) {
-                                bool respuesta =
-                                    await loginProvider.loginUsuario(formData);
-                                if (respuesta) {
-                                  //Manda un Mensaje   cuando el usuario esta
-                                  //Registrado
-                                  showDialog(
-                                      context: context,
-                                      builder: (context) {
-                                        //AlettDialog manda la alerta
-                                        return AlertDialog(actions: [
-                                          TextButton(
-                                            onPressed: () {
-                                              Navigator.pop(context);
-                                              Navigator.pushReplacementNamed(
-                                                  context, 'HomePage');
-                                            },
-                                            child: Text('Ok'),
-                                          )
-                                        ], title: Text('USUARIO AUTENTICADO'));
-                                      });
-                                }
-                              } else {
-                                print('NO VALIDADO');
-                              }
-                            },
+                            onPressed: formLogin,
                             child: Text(
                               'INGRESAR',
                             ))
@@ -137,14 +98,14 @@ class _LoginPageState extends State<LoginPage> {
                   //Cuando se presiona  el  botton nos direcciona al registro.
                   Navigator.pushNamed(context, RegisterPage.routeName);
                 },
-                child: Text(
+                child: const Text(
                   'Registra nueva cuenta',
                   style: TextStyle(
                     fontSize: 18,
                     color: Colors.white,
                   ),
                 )),
-            SizedBox(
+            const SizedBox(
               height: 30,
             )
           ],
@@ -152,23 +113,32 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-}
 
-//Clase  creada para el  winget...
-/*class AppTitle extends StatelessWidget {
-  const AppTitle({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Text('INICIAR SECCION',
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          color: Colors.brown,
-          fontWeight: FontWeight.bold,
-          fontSize: 20,
-        ));
+  formLogin() async {
+    //Esto se hace para que la valion se  haga
+    //garantizando que no va a  fallar
+    if (formkey.currentState!.validate()) {
+      bool respuesta = await loginProvider.loginUsuario(formData);
+      if (respuesta) {
+        //Manda un Mensaje   cuando el usuario esta
+        //Registrado
+        showDialog(
+            context: context,
+            builder: (context) {
+              //AlettDialog manda la alerta
+              return AlertDialog(actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    Navigator.pushReplacementNamed(context, 'HomePage');
+                  },
+                  child: const Text('Ok'),
+                )
+              ], title: Text('USUARIO AUTENTICADO'));
+            });
+      }
+    } else {
+      print('NO VALIDADO');
+    }
   }
 }
-*/

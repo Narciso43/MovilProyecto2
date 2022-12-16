@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 //Clase  creada para el  winget...
 class AppTitle extends StatelessWidget {
+  //Se declara si es
   final String title;
 
   const AppTitle(
