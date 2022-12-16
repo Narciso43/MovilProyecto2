@@ -55,6 +55,7 @@ class MyApp extends StatelessWidget {
         //initialRoute: OnboardingPage.routeName,
         initialRoute: AppConfig.initalRoute,
 
+        //Se hace el llamado al archivo de  rutas.
         routes: AppConfig.routes(),
       ),
     );

@@ -3,6 +3,8 @@ import 'package:js_onboarding/pages/register_page.dart';
 import 'package:js_onboarding/providers/login_provider.dart';
 import 'package:provider/provider.dart';
 
+import '../widgets/widgets.dart';
+
 class LoginPage extends StatefulWidget {
   static final String routeName = '/HomePage';
   const LoginPage();
@@ -50,13 +52,10 @@ class _LoginPageState extends State<LoginPage> {
                     key: formkey,
                     child: Column(
                       children: [
-                        Text('INICIAR SECCION',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.brown,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                            )),
+                        // Se extrajo en titulo  en un nuevo  winget
+                        // Se le  agrega el const ya que no cambia
+                        //durante la ejecucion.
+                        const AppTitle('INICIAR  SECCION'),
                         const SizedBox(height: 20),
                         TextFormField(
                           onChanged: (value) {
@@ -154,3 +153,22 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
+
+//Clase  creada para el  winget...
+/*class AppTitle extends StatelessWidget {
+  const AppTitle({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Text('INICIAR SECCION',
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          color: Colors.brown,
+          fontWeight: FontWeight.bold,
+          fontSize: 20,
+        ));
+  }
+}
+*/
